@@ -23,7 +23,7 @@ export default {
         test: function() {
             let arrayFilms = this.arrayFilm
 
-            console.log(arrayFilms);
+            //console.log(arrayFilms);
             return arrayFilms
         }
     },

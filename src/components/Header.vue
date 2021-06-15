@@ -1,18 +1,10 @@
 <template>
   <div class="d-flex justify-content-around align-items-center"> 
-    <a href="https://fontmeme.com/netflix-font/"><img src="https://fontmeme.com/permalink/210614/dbe2da256cf873b5e39378a2ee64c904.png" alt="netflix-font" border="0"></a>
+    <a href="/home"><img src="https://fontmeme.com/permalink/210614/dbe2da256cf873b5e39378a2ee64c904.png" alt="netflix-font" border="0"></a>
     <div>
-        <input @keyup="movieSearch" v-model="serch" type="text">
+        <input @keyup="movieSearch" @keydown="seriesTvSearch" v-model="serch" type="text">
         <input @click="$emit(`prova`, trasferArrayFilm)" type="button" value="search">
     </div>
-
-    <!-- <div>
-        <h1 v-for="(film, index) in films" :key="index">
-            {{film.title}}
-            {{film.original_title}}
-            {{film.original_language}}
-        </h1>
-    </div> -->
   </div>
 </template>
 
@@ -24,13 +16,15 @@ export default {
     data: function(){
         return {
               serch:"",
-              url:"https://api.themoviedb.org/3/search/movie" , 
-              films:""
+              urlFilm:"https://api.themoviedb.org/3/search/movie" , 
+              urlserieTv:"https://api.themoviedb.org/3/search/tv" , 
+              films:"",
+              serieTv:""
         }
     },
     methods:{
        movieSearch() {
-            axios.get(this.url ,{ 
+            axios.get(this.urlFilm ,{ 
                     params:{
                       api_key : "021c1d61b0a3435190dbf0a9fc20b605",
                       language : "it-IT",
@@ -43,12 +37,27 @@ export default {
                     this.films = response.data.results;
                     //console.log( this.film);
             })
-            }
+            },
+        seriesTvSearch() {
+            axios.get(this.urlserieTv ,{ 
+                    params:{
+                      api_key : "021c1d61b0a3435190dbf0a9fc20b605",
+                      language : "it-IT",
+                      query : this.serch,
+                    }
+            })
+            .then( 
+                (response) => {
+                    //console.log(response);
+                    this.serieTv = response.data.results;
+                    console.log( this.response.data.results);
+            })
+        }
     },
     computed: {
         trasferArrayFilm: function() {
-            const ArrayFilm = this.films;
-            return ArrayFilm;
+            const ArrayFilmTv = this.films.concat(this.serieTv);
+            return ArrayFilmTv;
         }
     }
 

@@ -25,7 +25,7 @@ export default {
       filmSearch.forEach(
         (element) => {
           array.push(element);
-          console.log(this.film2);
+          //console.log(this.film2);
         return array ; 
       })
       //return this.film2 = this.prova;
