@@ -1,21 +1,39 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Header />
+    <Header @prova="film" />
+    <Main :arrayFilm = "film2" />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-//import HelloWorld from './components/HelloWorld.vue'
-
+import Header from './components/Header.vue';
+import Main from './components/Main.vue';
 export default {
   name: 'App',
+  data: function(){
+    return{
+      film2:""
+    }
+  },
   components: {
-    Header
-    //HelloWorld
-  }
+    Header,
+    Main
+  },
+  methods: {
+    film: function(filmSearch){
+       let array = [];
+      filmSearch.forEach(
+        (element) => {
+          array.push(element);
+          console.log(this.film2);
+        return array ; 
+      })
+      //return this.film2 = this.prova;
+      this.film2 = array;
+   }
+
+    //ritorno al futuro
+  },
 }
 </script>
 
@@ -32,4 +50,5 @@ export default {
     body {
       padding: 30px;
     }
+
 </style>
