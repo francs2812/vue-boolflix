@@ -50,7 +50,7 @@ export default {
                 (response) => {
                     //console.log(response);
                     this.serieTv = response.data.results;
-                    console.log( this.response.data.results);
+                    //console.log( this.response.data.results);
             })
         }
     },
