@@ -1,11 +1,13 @@
 <template>
-  <div class="d-flex justify-content-around align-items-center"> 
+<main>
+  <div class="d-flex justify-content-between align-items-center"> 
     <a href="/home"><img src="https://fontmeme.com/permalink/210614/dbe2da256cf873b5e39378a2ee64c904.png" alt="netflix-font" border="0"></a>
     <div>
-        <input @keyup="movieSearch" @keydown="seriesTvSearch" v-model="serch" type="text">
-        <input @click="$emit(`prova`, trasferArrayFilm)" type="button" value="search">
+        <input placeholder="serch" @keyup="movieSearch" @keydown="seriesTvSearch" @keydown.enter="$emit(`prova`, trasferArrayFilm)" v-model="serch" type="text">
+        <!-- <input @click="$emit(`prova`, trasferArrayFilm)" type="button" value="search"> -->
     </div>
   </div>
+</main>
 </template>
 
 <script>
@@ -57,6 +59,7 @@ export default {
     computed: {
         trasferArrayFilm: function() {
             const ArrayFilmTv = this.films.concat(this.serieTv);
+            //console.log(ArrayFilmTv);
             return ArrayFilmTv;
         }
     }
@@ -65,6 +68,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    main {
+        padding: 30px 70px;
+        //border-bottom: 1px solid white;
+        background-color: black;
+    }
+    input {
+        padding: 2px;
+        border: 2px solid black;
+    }
 
 </style>

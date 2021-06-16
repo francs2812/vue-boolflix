@@ -48,7 +48,7 @@ export default {
     }
 
     body {
-      padding: 30px;
+        background-color: #222222;
     }
 
 </style>
